@@ -1,5 +1,16 @@
 <?php
+use Slim\Factory\AppFactory;
 
-require_once "../app/middlewares/CorsMiddleware.php";
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ .'/../app/Config/database.php';
 
-require_once "../app/retrospectivas/routers/endpoints.php";
+$cors = require __DIR__ . '/../app/Middlewares/CorsMiddleware.php';
+$endpoints = require __DIR__ . '/../app/Contactos/Presentation/Routers/endpoints.php';
+
+$app = AppFactory::create();
+
+$cors($app);
+
+$endpoints($app);
+
+$app->run();
