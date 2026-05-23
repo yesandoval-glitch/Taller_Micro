@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Retrospectivas Ágiles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/general.css" />
+    <link rel="stylesheet" href="css/modal.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">◈</span>
+          <span class="logo-text">RetroBoard</span>
+        </div>
+        <nav class="main-nav">
+          <a href="index.html" class="nav-link active">Sprints</a>
+          <a href="retrospectiva.html" class="nav-link">Retrospectiva</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="hero-tag">Metodología Ágil</div>
+        <h1 class="hero-title">Registro de<br /><em>Retrospectivas</em></h1>
+        <p class="hero-subtitle">Documenta, revisa y mejora. Sprint a sprint.</p>
+      </section>
+
+      <section class="content-grid">
+        <!-- Form panel -->
+        <div class="panel panel--form">
+          <h2 class="panel-title" id="formTitle">Nuevo Sprint</h2>
+          <div class="field-group">
+            <label class="field-label" for="sprintNombre">Nombre del Sprint</label>
+            <input class="field-input" type="text" id="sprintNombre" placeholder="ej. Sprint 4" />
+            <p class="field-error hidden" id="errNombre">Este campo es obligatorio</p>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="sprintInicio">Fecha de inicio</label>
+            <input class="field-input" type="date" id="sprintInicio" />
+            <p class="field-error hidden" id="errInicio">Este campo es obligatorio</p>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="sprintFin">Fecha de fin</label>
+            <input class="field-input" type="date" id="sprintFin" />
+            <p class="field-error hidden" id="errFin">Este campo es obligatorio</p>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn--ghost" id="btnCancelar">Cancelar</button>
+            <button class="btn btn--primary" id="btnGuardar">Guardar Sprint</button>
+          </div>
+        </div>
+
+        <!-- Table panel -->
+        <div class="panel panel--table">
+          <div class="panel-header">
+            <h2 class="panel-title">Sprints registrados</h2>
+            <span class="badge" id="sprintCount">0</span>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table" id="sprintsTB">
+              <thead>
+                <tr>
+                  <th>Sprint</th>
+                  <th>Inicio</th>
+                  <th>Fin</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="empty-row">
+                  <td colspan="4">No hay sprints registrados aún.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="modal1" class="modal modal--hidden">
+      <span class="modal-icon" id="modalIcon">✓</span>
+      <p class="modal-msg" id="modalMsg">Operación exitosa</p>
+      <button class="btn btn--sm" id="modalBtn">Aceptar</button>
+    </div>
+
+    <script src="js/modal.js"></script>
+    <script src="js/sprints.js"></script>
+    <script src="js/sprint_form.js"></script>
+  </body>
+</html>

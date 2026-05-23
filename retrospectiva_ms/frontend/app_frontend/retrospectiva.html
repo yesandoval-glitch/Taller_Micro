@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Retrospectiva — RetroBoard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/general.css" />
+    <link rel="stylesheet" href="css/retro.css" />
+    <link rel="stylesheet" href="css/modal.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">◈</span>
+          <span class="logo-text">RetroBoard</span>
+        </div>
+        <nav class="main-nav">
+          <a href="index.html" class="nav-link">Sprints</a>
+          <a href="retrospectiva.html" class="nav-link active">Retrospectiva</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="retro-header">
+        <div class="sprint-selector-wrap">
+          <label class="field-label" for="sprintSelector">Sprint activo</label>
+          <select class="field-input field-select" id="sprintSelector">
+            <option value="">— Selecciona un sprint —</option>
+          </select>
+        </div>
+        <div class="retro-meta" id="retroMeta" style="display:none">
+          <span id="metaFechas"></span>
+        </div>
+      </section>
+
+      <!-- Kanban-style columns -->
+      <section class="kanban" id="kanbanBoard">
+        <div class="kanban-col" id="colLogros">
+          <div class="kanban-col-header logros">
+            <span class="col-icon">★</span>
+            <h3>Logros</h3>
+            <span class="col-count" id="cntLogros">0</span>
+          </div>
+          <div class="kanban-items" id="itemsLogros"></div>
+          <button class="add-item-btn" data-categoria="logro">+ Agregar logro</button>
+        </div>
+
+        <div class="kanban-col" id="colImpedimentos">
+          <div class="kanban-col-header impedimentos">
+            <span class="col-icon">✗</span>
+            <h3>Impedimentos</h3>
+            <span class="col-count" id="cntImpedimentos">0</span>
+          </div>
+          <div class="kanban-items" id="itemsImpedimentos"></div>
+          <button class="add-item-btn" data-categoria="impedimento">+ Agregar impedimento</button>
+        </div>
+
+        <div class="kanban-col" id="colAcciones">
+          <div class="kanban-col-header acciones">
+            <span class="col-icon">→</span>
+            <h3>Acciones</h3>
+            <span class="col-count" id="cntAcciones">0</span>
+          </div>
+          <div class="kanban-items" id="itemsAcciones"></div>
+          <button class="add-item-btn" data-categoria="accion">+ Agregar acción</button>
+        </div>
+
+        <div class="kanban-col" id="colComentarios">
+          <div class="kanban-col-header comentarios">
+            <span class="col-icon">◉</span>
+            <h3>Comentarios</h3>
+            <span class="col-count" id="cntComentarios">0</span>
+          </div>
+          <div class="kanban-items" id="itemsComentarios"></div>
+          <button class="add-item-btn" data-categoria="comentario">+ Agregar comentario</button>
+        </div>
+      </section>
+
+      <!-- Panel vacío cuando no hay sprint seleccionado -->
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">◈</div>
+        <p>Selecciona un sprint para ver o registrar su retrospectiva.</p>
+        <a href="index.html" class="btn btn--primary">Crear un sprint</a>
+      </div>
+    </main>
+
+    <!-- Modal para agregar / editar items -->
+    <div class="overlay hidden" id="itemOverlay"></div>
+    <div class="item-modal hidden" id="itemModal">
+      <div class="item-modal-header">
+        <h3 id="itemModalTitle">Agregar item</h3>
+        <button class="close-modal-btn" id="closeItemModal">✕</button>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="itemDescripcion">Descripción</label>
+        <textarea class="field-input field-textarea" id="itemDescripcion" rows="3" placeholder="Describe brevemente..."></textarea>
+        <p class="field-error hidden" id="errDescripcion">Este campo es obligatorio</p>
+      </div>
+      <div class="field-group" id="grupoAccion" style="display:none">
+        <label class="field-label" for="itemFechaRevision">Fecha de revisión</label>
+        <input class="field-input" type="date" id="itemFechaRevision" />
+      </div>
+      <div class="field-group check-group" id="grupoCumplida" style="display:none">
+        <label class="check-label">
+          <input type="checkbox" id="itemCumplida" />
+          <span>Acción cumplida</span>
+        </label>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn--ghost" id="btnCancelarItem">Cancelar</button>
+        <button class="btn btn--primary" id="btnGuardarItem">Guardar</button>
+      </div>
+    </div>
+
+    <div id="modal1" class="modal modal--hidden">
+      <span class="modal-icon" id="modalIcon">✓</span>
+      <p class="modal-msg" id="modalMsg">Operación exitosa</p>
+      <button class="btn btn--sm" id="modalBtn">Aceptar</button>
+    </div>
+
+    <script src="js/modal.js"></script>
+    <script src="js/retro_items.js"></script>
+    <script src="js/retro_page.js"></script>
+  </body>
+</html>

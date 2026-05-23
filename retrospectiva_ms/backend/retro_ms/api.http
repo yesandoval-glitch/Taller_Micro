@@ -1,0 +1,78 @@
+### Listar todos los sprints
+GET http://127.0.0.1:8000/sprints
+
+### Obtener sprint por id
+GET http://127.0.0.1:8000/sprints/1
+
+### Crear sprint
+POST http://127.0.0.1:8000/sprints
+Content-Type: application/json
+
+{
+    "nombre": "Sprint 1",
+    "fecha_inicio": "2024-01-01",
+    "fecha_fin": "2024-01-14"
+}
+
+### Actualizar sprint
+PUT http://127.0.0.1:8000/sprints/1
+Content-Type: application/json
+
+{
+    "nombre": "Sprint 1 - Revisado",
+    "fecha_inicio": "2024-01-01",
+    "fecha_fin": "2024-01-14"
+}
+
+### Eliminar sprint
+DELETE http://127.0.0.1:8000/sprints/1
+
+### ── Items ────────────────────────────────────────────────
+
+### Listar todos los items
+GET http://127.0.0.1:8000/items
+
+### Items de un sprint específico
+GET http://127.0.0.1:8000/sprints/1/items
+
+### Obtener item por id
+GET http://127.0.0.1:8000/items/1
+
+### Crear item - logro
+POST http://127.0.0.1:8000/items
+Content-Type: application/json
+
+{
+    "sprint_id": 1,
+    "categoria": "logro",
+    "descripcion": "Completamos todas las historias de usuario del sprint",
+    "cumplida": null,
+    "fecha_revision": null
+}
+
+### Crear item - accion
+POST http://127.0.0.1:8000/items
+Content-Type: application/json
+
+{
+    "sprint_id": 1,
+    "categoria": "accion",
+    "descripcion": "Mejorar la comunicación en daily standups",
+    "cumplida": null,
+    "fecha_revision": "2024-01-28"
+}
+
+### Actualizar item (marcar accion como cumplida)
+PUT http://127.0.0.1:8000/items/1
+Content-Type: application/json
+
+{
+    "sprint_id": 1,
+    "categoria": "accion",
+    "descripcion": "Mejorar la comunicación en daily standups",
+    "cumplida": true,
+    "fecha_revision": "2024-01-28"
+}
+
+### Eliminar item
+DELETE http://127.0.0.1:8000/items/1
